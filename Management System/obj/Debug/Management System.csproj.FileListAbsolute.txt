@@ -1,0 +1,15 @@
+D:\WWW\.NET\Management System\Management System\bin\Debug\Management System.exe.config
+D:\WWW\.NET\Management System\Management System\bin\Debug\Management System.exe
+D:\WWW\.NET\Management System\Management System\bin\Debug\Management System.pdb
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management System.csproj.AssemblyReference.cache
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management System.csproj.SuggestedBindingRedirects.cache
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management_System.Properties.Resources.resources
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management System.csproj.GenerateResource.cache
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management System.csproj.CoreCompileInputs.cache
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management System.exe
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management System.pdb
+D:\WWW\.NET\Management System\Management System\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\WWW\.NET\Management System\Management System\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management System.csproj.CopyComplete
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management_System.Login.resources
+D:\WWW\.NET\Management System\Management System\obj\Debug\Management_System.Home.resources
