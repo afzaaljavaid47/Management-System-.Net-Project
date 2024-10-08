@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Microsoft.Reporting.WinForms;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,11 @@ namespace Management_System
             InitializeComponent();
         }
 
+        public string Reportname { get; set; }
+        public DataTable Reportdata { get; set; }
         private void printPreviewControl1_Click(object sender, EventArgs e)
         {
+            
 
         }
 
@@ -44,7 +48,15 @@ namespace Management_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            reportViewer1.PrintDialog();
+            
+        }
+
+        private void crystalReportViewer1_Load(object sender, EventArgs e)
+        {
+            ReportDocument rdd = new ReportDocument();
+            rdd.Load(Reportname);
+            rdd.SetDataSource(Reportdata);
+            crystalReportViewer1.ReportSource = rdd;
         }
     }
 }

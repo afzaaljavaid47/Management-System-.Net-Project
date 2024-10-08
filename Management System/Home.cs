@@ -36,6 +36,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using Font = iTextSharp.text.Font;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using Microsoft.ReportingServices.Diagnostics.Internal;
+using PaperSource = CrystalDecisions.Shared.PaperSource;
 
 namespace Management_System
 {
@@ -66,7 +70,6 @@ namespace Management_System
         private void button2_Click(object sender, EventArgs e)
         {
             int invoiceId = 100;
-
             string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -94,171 +97,38 @@ namespace Management_System
                 MessageBox.Show("Invoice created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 connection.Close();
             }
-            //this.Hide();
-            //Print p = new Print();
-            //p.Show();
-
-            //string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
-
+          
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
                 string query = "SELECT * FROM Sales where invoiceId='" + 100 + "'";
-
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                    SalesDataSet salesDataSet = new SalesDataSet();
-                    dataAdapter.Fill(salesDataSet, "SalesDataTable");
-                    ReportDataSource rds = new ReportDataSource("SalesDataSet", salesDataSet.Tables[0]);
+                    DataTable data = new DataTable();
+                    SqlDataReader reader = command.ExecuteReader();
+                    data.Load(reader);
+                    Print print = new Print();
+                    string reportPath = @"CrystalReport1.rpt";
+                    string fullpath=Path.Combine(Application.StartupPath, reportPath);
+                    print.Reportname= fullpath;
+                    print.Reportdata=data;
+                    this.Hide();
+                    print.Show();
+                    //SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                    //SalesDataSet salesDataSet = new SalesDataSet();
+                    //dataAdapter.Fill(salesDataSet, "sales");
+                    //ReportDataSource rds = new ReportDataSource("SalesDataSet", salesDataSet.Tables[0]);
 
-                    LocalReport report = new LocalReport();
-                    string path = Path.GetDirectoryName(Application.ExecutablePath);
-                    string fullPath = Path.GetDirectoryName(Application.ExecutablePath).Remove(path.Length - 10) + @"\Report1.rdlc";
-                    report.ReportPath = fullPath;
-                    report.DataSources.Add(new ReportDataSource("SalesDataSet", salesDataSet.Tables[0]));
-                    PrintToPrinter(report);
+                    //ReportDocument reportDocument = new ReportDocument();
+                    //reportDocument.Load("F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReport1.rpt");
+                    //reportDocument.SetDataSource(salesDataSet);
 
-                    Document doc = new Document(new iTextSharp.text.Rectangle(3 * 72, 6 * 72)); // 1 inch = 72 points
-                    string paths = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), $"Invoice_{invoiceId}.pdf");
+                    //reportDocument.PrintOptions.PrinterName = "CITIZEN CBM1000 Type II";
+                    //PrinterSettings printerSettings = new PrinterSettings();
+                    //printerSettings.PrinterName = "CITIZEN CBM1000 Type II"; 
 
-                    PdfWriter.GetInstance(doc, new FileStream(paths, FileMode.Create));
-                    doc.Open();
-
-                    // Add Title
-                    iTextSharp.text.Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14);
-                    Paragraph title = new Paragraph("Invoice", titleFont) { Alignment = Element.ALIGN_CENTER };
-                    doc.Add(title);
-
-                    doc.Add(new Paragraph("\n")); // Add some space
-
-                    // Add Invoice Details
-                    iTextSharp.text.Font detailFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
-
-
-                    Paragraph invoiceDetails = new Paragraph
-                    {
-                        Alignment = Element.ALIGN_LEFT
-                    };
-                    invoiceDetails.Add(new Chunk($"Invoice ID: {invoiceId}  ", detailFont)); // Add Invoice ID
-                    invoiceDetails.Add(new Chunk($"Customer Name: Afzaal", detailFont)); // Add Customer Name
-
-                    doc.Add(invoiceDetails);
-                    doc.Add(new Paragraph($"Date: {DateTime.Now.ToString("yyyy-MM-dd")}", detailFont));
-
-                    doc.Add(new Paragraph("\n")); // Add some space
-
-
-
-
-                    doc.Add(new Paragraph($"Date: {DateTime.Now.ToString("yyyy-MM-dd")}", detailFont));
-
-                    doc.Add(new Paragraph("\n")); // Add some space
-
-                    // Add Items Table
-                    PdfPTable table = new PdfPTable(3); // 3 columns
-                    table.WidthPercentage = 100;
-                    table.AddCell("Item Description");
-                    table.AddCell("Quantity");
-                    table.AddCell("Price");
-
-                    // Example items - replace with actual items
-                    for (int i = 1; i <= 5; i++)
-                    {
-                        table.AddCell($"Item {i}");
-                        table.AddCell("1"); // Quantity
-                        table.AddCell($"${10 * i}"); // Price
-                    }
-
-                    doc.Add(table);
-
-                    doc.Add(new Paragraph("\n")); // Add some space
-
-                    // Add Footer
-                    iTextSharp.text.Font footerFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
-                    Paragraph footer = new Paragraph("Thank you for your business!", footerFont)
-                    {
-                        Alignment = Element.ALIGN_CENTER
-                    };
-                    doc.Add(footer);
-
-                    // Close the document
-                    doc.Close();
-                    MessageBox.Show("Invoice generated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-
+                    //reportDocument.PrintToPrinter(1, false, 0, 0);
                 }
-            }
-        }
-        public static void PrintToPrinter(LocalReport report)
-        {
-            Export(report);
-
-        }
-        public void GenerateFastReport(string invoiceId, string customerName, DateTime invoiceDate)
-        {
-            // Create a new report instance
-            Report report = new Report();
-
-            // Create a DataTable to hold the report data
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ItemDescription");
-            dt.Columns.Add("Quantity");
-            dt.Columns.Add("Price");
-
-            // Add example data - replace this with actual data
-            for (int i = 1; i <= 5; i++)
-            {
-                dt.Rows.Add($"Item {i}", 1, 10 * i); // Example data
-            }
-
-            // Register the DataTable as a data source
-            report.RegisterData(dt, "InvoiceItems");
-
-            // Load a report template (optional)
-            // report.Load("PathToYourReportTemplate.frx");
-
-            // Set the report title and invoice details
-            report.SetParameterValue("InvoiceId", invoiceId);
-            report.SetParameterValue("CustomerName", customerName);
-            report.SetParameterValue("InvoiceDate", invoiceDate.ToString("yyyy-MM-dd"));
-
-            // Create a report page
-            var page = report.Pages[0];
-
-            // Create report layout
-            report.Prepare();
-
-            // Show the report in a viewer
-            var reportViewer = new ReportViewer();
-            reportViewer.Report = report;
-            reportViewer.ShowDialog();
-        }
-        public static void Export(LocalReport report, bool print = true)
-        {
-            string deviceInfo =
-             @"<DeviceInfo>
-        <OutputFormat>EMF</OutputFormat>
-        <PageWidth>3in</PageWidth>
-        <PageHeight>6in</PageHeight>
-        <MarginTop>0in</MarginTop>
-        <MarginLeft>0.1in</MarginLeft>
-        <MarginRight>0.1in</MarginRight>
-        <MarginBottom>0in</MarginBottom>
-    </DeviceInfo>";
-
-            Warning[] warnings;
-            m_streams = new List<Stream>();
-            report.Render("Image", deviceInfo, CreateStream, out warnings);
-
-            foreach (Stream stream in m_streams)
-                stream.Position = 0;
-
-            if (print)
-            {
-                PrintPrinter();
             }
         }
         public static Stream CreateStream(string name, string fileNameExtension, Encoding encoding, string mimeType, bool willSeek)
@@ -267,54 +137,7 @@ namespace Management_System
             m_streams.Add(stream);
             return stream;
         }
-
-        public static void PrintPage(object sender, PrintPageEventArgs ev)
-        {
-            Metafile pageImage = new
-               Metafile(m_streams[m_currentPageIndex]);
-
-            // Adjust rectangular area with printer margins.
-            System.Drawing.Rectangle adjustedRect = new System.Drawing.Rectangle(
-                ev.PageBounds.Left - (int)ev.PageSettings.HardMarginX,
-                ev.PageBounds.Top - (int)ev.PageSettings.HardMarginY,
-                ev.PageBounds.Width,
-                ev.PageBounds.Height);
-
-            // Draw a white background for the report
-            ev.Graphics.FillRectangle(Brushes.White, adjustedRect);
-
-            // Draw the report content
-            ev.Graphics.DrawImage(pageImage, adjustedRect);
-
-            // Prepare for the next page. Make sure we haven't hit the end.
-            m_currentPageIndex++;
-            ev.HasMorePages = (m_currentPageIndex < m_streams.Count);
-        }
-        public static void PrintPrinter()
-        {
-            if (m_streams == null || m_streams.Count == 0)
-                throw new Exception("Error: no stream to print.");
-            PrintDocument printDoc = new PrintDocument();
-            if (!printDoc.PrinterSettings.IsValid)
-            {
-                throw new Exception("Error: cannot find the default printer.");
-            }
-            else
-            {
-                printDoc.PrintPage += new PrintPageEventHandler(PrintPage);
-                m_currentPageIndex = 0;
-                printDoc.Print();
-            }
-        }
-        public static void DisposePrint()
-        {
-            if (m_streams != null)
-            {
-                foreach (Stream stream in m_streams)
-                    stream.Close();
-                m_streams = null;
-            }
-        }
+        
         private void button1_Click(object sender, EventArgs e)
         {
             int invoiceId = 100;

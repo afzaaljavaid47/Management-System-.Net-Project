@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Management_System
 {
-    public partial class Login : MetroFramework.Forms.MetroForm
+    public partial class Login : Form
     {
         public Login()
         {
