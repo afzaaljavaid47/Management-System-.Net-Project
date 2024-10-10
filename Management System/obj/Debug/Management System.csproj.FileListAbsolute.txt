@@ -172,3 +172,4 @@ F:\.NET\Management-System-.Net-Project\Management System\bin\Debug\Management Sy
 F:\.NET\Management-System-.Net-Project\Management System\bin\Debug\Management System.application
 F:\.NET\Management-System-.Net-Project\Management System\obj\Debug\Management System.exe.manifest
 F:\.NET\Management-System-.Net-Project\Management System\obj\Debug\Management System.application
+F:\.NET\Management-System-.Net-Project\Management System\obj\Debug\Management_System.Invoices.resources
