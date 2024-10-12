@@ -146,6 +146,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReportPrinter.cs" />
+    <Compile Include="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HabibMedicalStoreDataSet.cs">
+      <DependentUpon>HabibMedicalStoreDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Invoices.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,6 +185,12 @@
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
     <Compile Include="PrintHelpers.cs" />
+    <Compile Include="Product.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product.Designer.cs">
+      <DependentUpon>Product.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalesDataSet.cs">
@@ -186,6 +201,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SalesInvoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalesInvoices.Designer.cs">
+      <DependentUpon>SalesInvoices.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -195,6 +216,9 @@
     <EmbeddedResource Include="CrystalReport2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Invoices.resx">
       <DependentUpon>Invoices.cs</DependentUpon>
@@ -208,6 +232,9 @@
     <EmbeddedResource Include="Print.resx">
       <DependentUpon>Print.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Product.resx">
+      <DependentUpon>Product.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -216,8 +243,12 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="SalesInvoices.resx">
+      <DependentUpon>SalesInvoices.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="HabibMedicalStoreDataSet.xsc">
       <DependentUpon>HabibMedicalStoreDataSet.xsd</DependentUpon>
     </None>
@@ -256,6 +287,44 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\inventory.png" />
+    <None Include="Resources\www.png" />
+    <None Include="Resources\store.png" />
+    <None Include="Resources\gmail.png" />
+    <None Include="Resources\windows.png" />
+    <None Include="Resources\tools.png" />
+    <None Include="Resources\security.png" />
+    <None Include="Resources\report.png" />
+    <None Include="Resources\order.png" />
+    <None Include="Resources\customer.png" />
+    <None Include="Resources\gmail1.png" />
+    <None Include="Resources\store1.png" />
+    <None Include="Resources\www1.png" />
+    <None Include="Resources\inventory1.png" />
+    <None Include="Resources\shared image.jpg" />
+    <None Include="Resources\icons8-logout-48.png" />
+    <None Include="Resources\icons8-refresh-64.png" />
+    <None Include="Resources\icons8-add-96.png" />
+    <None Include="Resources\icons8-refresh-96.png" />
+    <None Include="Resources\icons8-printer-100.png" />
+    <None Include="Resources\icons8-save-100.png" />
+    <None Include="Resources\icons8-printer-1001.png" />
+    <None Include="Resources\icons8-refresh-961.png" />
+    <None Include="Resources\icons8-add-961.png" />
+    <None Include="Resources\icons8-refresh-641.png" />
+    <None Include="Resources\icons8-logout-481.png" />
+    <None Include="Resources\windows1.png" />
+    <None Include="Resources\tools1.png" />
+    <None Include="Resources\security1.png" />
+    <None Include="Resources\report1.png" />
+    <None Include="Resources\order1.png" />
+    <None Include="Resources\customer1.png" />
+    <None Include="Resources\gmail2.png" />
+    <None Include="Resources\store2.png" />
+    <None Include="Resources\www2.png" />
+    <None Include="Resources\inventory2.png" />
+    <None Include="Resources\shared image1.jpg" />
+    <None Include="Resources\icons8-save-1001.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
