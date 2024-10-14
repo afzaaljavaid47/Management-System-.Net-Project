@@ -1,4 +1,5 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,9 +10,11 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Management_System
 {
@@ -75,7 +78,6 @@ namespace Management_System
         {
             if (ValidateFields())
             {
-                MessageBox.Show("All fields are valid!");
                 string salesPerson=txtSalesPerson.Text;
                 string customername=txtCustomerName.Text;
                 DateTime dateTime=Convert.ToDateTime(txtDateTime.Text);
@@ -92,7 +94,6 @@ namespace Management_System
                 int returnChange = Convert.ToInt32(txtReturnChange.Text);
                 int invoiceId = 0;
 
-                //Invoice Items
                 string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -145,6 +146,7 @@ namespace Management_System
                         }
                         transaction.Commit();
                         MessageBox.Show("Invoice saved successfully!");
+                        
                     }
                     catch (Exception ex)
                     {
@@ -152,21 +154,18 @@ namespace Management_System
                         MessageBox.Show("Error: " + ex.Message);
                     }
 
-                    string query = "SELECT * FROM Invoice where invoiceId='" + invoiceId + "'";
+                    string query = "SELECT  * FROM Invoice I INNER JOIN InvoiceItems II ON I.invoiceId = II.invoiceId WHERE I.invoiceId = '" + invoiceId + "'";
+                    string query1 = "SELECT * FROM Invoice where invoiceId='" + invoiceId + "'";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        string reportPath = @"CrystalReport1.rpt";
-                        string fullpath = Path.Combine(Application.StartupPath, reportPath);
-
-                        SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                        SalesDataSet salesDataSet = new SalesDataSet();
-                        dataAdapter.Fill(salesDataSet, "sales");
+                        string fullpath = Path.Combine("F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReport3.rpt");
 
                         ReportDocument reportDocument = new ReportDocument();
                         reportDocument.Load(fullpath);
-                        reportDocument.SetDataSource(salesDataSet);
+                        DataSet dataSet = GetInvoiceData(connectionString, invoiceId);
+                        reportDocument.SetDataSource(dataSet);
 
-                        string printerName = "CITIZEN CBM1000 Type II";
+                        string printerName = "Microsoft Print to PDF";
                         PrintDocument printDoc = new PrintDocument
                         {
                             PrinterSettings = { PrinterName = printerName }
@@ -181,9 +180,37 @@ namespace Management_System
                         reportDocument.PrintToPrinter(1, false, 0, 0);
                     }
                     connection.Close();
+                    ResetForm();
                 }
             }
         }
+
+        public DataSet GetInvoiceData(string connectionString, int invoiceId)
+        {
+            string invoiceQuery = "SELECT * FROM Invoice WHERE invoiceId = @InvoiceID";
+            string invoiceItemsQuery = "SELECT * FROM InvoiceItems WHERE invoiceId = @InvoiceID";
+            DataSet dataSet = new DataSet();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand invoiceCommand = new SqlCommand(invoiceQuery, connection))
+                using (SqlCommand invoiceItemsCommand = new SqlCommand(invoiceItemsQuery, connection))
+                {
+                    invoiceCommand.Parameters.AddWithValue("@InvoiceID", invoiceId);
+                    invoiceItemsCommand.Parameters.AddWithValue("@InvoiceID", invoiceId);
+
+                    SqlDataAdapter invoiceAdapter = new SqlDataAdapter(invoiceCommand);
+                    SqlDataAdapter invoiceItemsAdapter = new SqlDataAdapter(invoiceItemsCommand);
+
+                    invoiceAdapter.Fill(dataSet, "Invoice");
+
+                    invoiceItemsAdapter.Fill(dataSet, "InvoiceItems");
+                }
+            }
+            return dataSet;
+        }
+
+
         private bool ValidateFields()
         {
             if (string.IsNullOrWhiteSpace(txtSalesPerson.Text))
@@ -318,24 +345,134 @@ namespace Management_System
         {
             if (e.Control && e.KeyCode == Keys.S)
             {
-                e.SuppressKeyPress = true; // Prevent the default 'Save' action
-                SaveRecord(); // Call your save method
-            }
-        }
-        private void SaveRecord()
-        {
-            if (ValidateFields()) 
-            {
-                // Example: Save data to database
-                // SaveDataToDatabase();
+                if (ValidateFields())
+                {
+                    string salesPerson = txtSalesPerson.Text;
+                    string customername = txtCustomerName.Text;
+                    DateTime dateTime = Convert.ToDateTime(txtDateTime.Text);
+                    string comments = txtComments.Text;
+                    string additionalComments = txtAdditionalComments.Text;
+                    bool isPrintReceipt = printReceiptCheckBox.Checked;
+                    int noOfCopies = Convert.ToInt32(txtNoOfCopied.Text);
+                    int grossTotal = Convert.ToInt32(txtGrossTotal.Text);
+                    float customerDiscount = float.Parse(txtCustomerDiscount.Text);
+                    int netGrossTotal = Convert.ToInt32(txtNetGrossTotal.Text);
+                    float receiptAdjustment = float.Parse(txtReceiptAdjustment.Text);
+                    float netInvoiceTotal = float.Parse(txtNetInvoiceTotal.Text);
+                    int cashreceived = Convert.ToInt32(txtCashReceived.Text);
+                    int returnChange = Convert.ToInt32(txtReturnChange.Text);
+                    int invoiceId = 0;
 
-                MessageBox.Show("Record saved successfully!");
+                    string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        SqlTransaction transaction = connection.BeginTransaction();
+                        try
+                        {
+                            string insertInvoiceQuery = "INSERT INTO Invoice (salesPerson, customerName, dateTime,paymentMode,invoiceComments,invoiceAdditionalComments, isPrintReceipt, noOfCopies, invoiceGrandTotal, invoiceCustomerDiscount, netGrandTotal, invoiceAdjustment, invoiceNetTotal, invoiceCashReceive, invoiceReturnChange ) " +
+                                                        "OUTPUT INSERTED.invoiceId " +
+                                                        "VALUES (@salesPerson, @customername, @dateTime, @paymentMethod, @comments, @additionalComments,@isPrintReceipt,@noOfCopies,@grossTotal,@customerDiscount,@netGrossTotal,@receiptAdjustment,@netInvoiceTotal,@cashreceived,@returnChange)";
+
+                            SqlCommand invoiceCommand = new SqlCommand(insertInvoiceQuery, connection, transaction);
+                            invoiceCommand.Parameters.AddWithValue("@salesPerson", salesPerson);
+                            invoiceCommand.Parameters.AddWithValue("@customername", customername);
+                            invoiceCommand.Parameters.AddWithValue("@dateTime", dateTime);
+                            invoiceCommand.Parameters.AddWithValue("@paymentMethod", paymentMethod);
+                            invoiceCommand.Parameters.AddWithValue("@comments", comments);
+                            invoiceCommand.Parameters.AddWithValue("@additionalComments", additionalComments);
+                            invoiceCommand.Parameters.AddWithValue("@isPrintReceipt", isPrintReceipt);
+                            invoiceCommand.Parameters.AddWithValue("@noOfCopies", noOfCopies);
+                            invoiceCommand.Parameters.AddWithValue("@grossTotal", grossTotal);
+                            invoiceCommand.Parameters.AddWithValue("@customerDiscount", customerDiscount);
+                            invoiceCommand.Parameters.AddWithValue("@netGrossTotal", netGrossTotal);
+                            invoiceCommand.Parameters.AddWithValue("@receiptAdjustment", receiptAdjustment);
+                            invoiceCommand.Parameters.AddWithValue("@netInvoiceTotal", netInvoiceTotal);
+                            invoiceCommand.Parameters.AddWithValue("@cashreceived", cashreceived);
+                            invoiceCommand.Parameters.AddWithValue("@returnChange", returnChange);
+
+                            invoiceId = (int)invoiceCommand.ExecuteScalar();
+
+                            string insertDetailsQuery = "INSERT INTO InvoiceItems (invoiceId, productName, quantity, productRate,productDiscount, productTotal) " +
+                                                        "VALUES (@invoiceId, @productName, @quantity, @productRate, @productDiscount, @productTotal)";
+
+                            SqlCommand detailsCommand = new SqlCommand(insertDetailsQuery, connection, transaction);
+
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            {
+                                if (!row.IsNewRow)
+                                {
+                                    detailsCommand.Parameters.Clear();
+
+                                    detailsCommand.Parameters.AddWithValue("@invoiceId", invoiceId);
+                                    detailsCommand.Parameters.AddWithValue("@productName", row.Cells["Product_Name"].Value);
+                                    detailsCommand.Parameters.AddWithValue("@quantity", row.Cells["Qty"].Value);
+                                    detailsCommand.Parameters.AddWithValue("@productRate", row.Cells["Rate"].Value);
+                                    detailsCommand.Parameters.AddWithValue("@productDiscount", row.Cells["Discount"].Value);
+                                    detailsCommand.Parameters.AddWithValue("@productTotal", row.Cells["Total"].Value);
+                                    detailsCommand.ExecuteNonQuery();
+                                }
+                            }
+                            transaction.Commit();
+                            MessageBox.Show("Invoice saved successfully!");
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
+
+                        string query = "SELECT  * FROM Invoice I INNER JOIN InvoiceItems II ON I.invoiceId = II.invoiceId WHERE I.invoiceId = '" + invoiceId + "'";
+                        string query1 = "SELECT * FROM Invoice where invoiceId='" + invoiceId + "'";
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            string fullpath = Path.Combine("F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReport3.rpt");
+
+                            ReportDocument reportDocument = new ReportDocument();
+                            reportDocument.Load(fullpath);
+                            DataSet dataSet = GetInvoiceData(connectionString, invoiceId);
+                            reportDocument.SetDataSource(dataSet);
+
+                            string printerName = "Microsoft Print to PDF";
+                            PrintDocument printDoc = new PrintDocument
+                            {
+                                PrinterSettings = { PrinterName = printerName }
+                            };
+
+                            PaperSize customPaperSize = new PaperSize("Custom", 300, 600);
+                            printDoc.DefaultPageSettings.PaperSize = customPaperSize;
+                            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+
+                            reportDocument.PrintOptions.PrinterName = printerName;
+                            reportDocument.PrintOptions.PaperSize = CrystalDecisions.Shared.PaperSize.DefaultPaperSize;
+                            reportDocument.PrintToPrinter(1, false, 0, 0);
+                        }
+                        connection.Close();
+                        ResetForm();
+                    }
+                }
+                e.SuppressKeyPress = true;
             }
         }
 
         private void Dashboard_KeyPress(object sender, KeyPressEventArgs e)
         {
             
+        }
+
+        private void ResetForm()
+        {
+            dataGridView1.Rows.Clear();
+            txtProductSKU.Text = String.Empty;
+            txtComments.Text = String.Empty;
+            txtAdditionalComments.Text = String.Empty;
+            txtGrossTotal.Text = "0";
+            txtCustomerDiscount.Text = "0.0";
+            txtNetGrossTotal.Text = "0.0";
+            txtReceiptAdjustment.Text = "0.0";
+            txtNetInvoiceTotal.Text = "0.0";
+            txtCashReceived.Text = "0.0";
+            txtReturnChange.Text = "0.0";
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)
@@ -345,39 +482,43 @@ namespace Management_System
 
         private void txtProductSKU_TextChanged(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (!string.IsNullOrWhiteSpace(txtProductSKU.Text))
             {
-                connection.Open();
-                string query = "SELECT productCode, productName, productRate, productStock FROM Product WHERE productCode = @productCode";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                string connectionString = ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString;
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@productCode", txtProductSKU.Text);
-
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string query = "SELECT productCode, productName, productRate, productStock FROM Product WHERE productCode = @productCode";
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                string productCode = reader["productCode"].ToString();
-                                string productName = reader["productName"].ToString();
-                                decimal productRate = Convert.ToDecimal(reader["productRate"]);
-                                int productStock = Convert.ToInt32(reader["productStock"]);
-                                dataGridView1.Rows.Add(dataGridView1.RowCount + 1,productCode, productName, productRate, txtQuantity.Text,0, productRate* Convert.ToInt32(txtQuantity.Text));
-                                int sum = 0;
-                                for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
-                                {
-                                    sum += Convert.ToInt32(dataGridView1.Rows[i].Cells[6].Value);
-                                }
+                        command.Parameters.AddWithValue("@productCode", txtProductSKU.Text);
 
-                                txtNetInvoiceTotal.Text = sum.ToString();
-                                txtGrossTotal.Text = sum.ToString();
-                            }
-                        }
-                        else
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            MessageBox.Show("No product found with the specified Product Code.");
+                            if (reader.HasRows && !string.IsNullOrWhiteSpace(txtProductSKU.Text))
+                            {
+                                while (reader.Read())
+                                {
+                                    string productCode = reader["productCode"].ToString();
+                                    string productName = reader["productName"].ToString();
+                                    decimal productRate = Convert.ToDecimal(reader["productRate"]);
+                                    int productStock = Convert.ToInt32(reader["productStock"]);
+                                    dataGridView1.Rows.Add(dataGridView1.RowCount + 1, productCode, productName, productRate, txtQuantity.Text, 0, productRate * Convert.ToInt32(txtQuantity.Text));
+                                    int sum = 0;
+                                    for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
+                                    {
+                                        sum += Convert.ToInt32(dataGridView1.Rows[i].Cells[6].Value);
+                                    }
+
+                                    txtNetInvoiceTotal.Text = sum.ToString();
+                                    txtGrossTotal.Text = sum.ToString();
+                                    txtNetGrossTotal.Text = sum.ToString();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No product found with the specified Product Code.");
+                            }
                         }
                     }
                 }

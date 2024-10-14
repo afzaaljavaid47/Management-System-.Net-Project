@@ -145,6 +145,12 @@
       <DependentUpon>CrystalReport2.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport3.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport3.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReportPrinter.cs" />
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>
@@ -154,6 +160,11 @@
     </Compile>
     <Compile Include="HabibMedicalStoreDataSet.cs">
       <DependentUpon>HabibMedicalStoreDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvoiceDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Invoices.cs">
       <SubType>Form</SubType>
@@ -217,6 +228,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport2.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport3.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +274,17 @@
     </None>
     <None Include="HabibMedicalStoreDataSet.xss">
       <DependentUpon>HabibMedicalStoreDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="InvoiceDataSet.xsc">
+      <DependentUpon>InvoiceDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="InvoiceDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InvoiceDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="InvoiceDataSet.xss">
+      <DependentUpon>InvoiceDataSet.xsd</DependentUpon>
     </None>
     <None Include="Management System_TemporaryKey.pfx" />
     <None Include="packages.config" />

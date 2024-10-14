@@ -193,3 +193,6 @@ D:\WWW\.NET\Management System\Management System\obj\Debug\Management System.appl
 D:\WWW\.NET\Management System\Management System\obj\Debug\Management_System.Dashboard.resources
 D:\WWW\.NET\Management System\Management System\obj\Debug\Management_System.Product.resources
 D:\WWW\.NET\Management System\Management System\obj\Debug\Management_System.SalesInvoices.resources
+F:\.NET\Management-System-.Net-Project\Management System\obj\Debug\Management_System.Dashboard.resources
+F:\.NET\Management-System-.Net-Project\Management System\obj\Debug\Management_System.Product.resources
+F:\.NET\Management-System-.Net-Project\Management System\obj\Debug\Management_System.SalesInvoices.resources
