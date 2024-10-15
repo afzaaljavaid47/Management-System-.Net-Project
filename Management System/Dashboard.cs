@@ -140,7 +140,7 @@ namespace Management_System
                                 detailsCommand.Parameters.AddWithValue("@quantity", row.Cells["Qty"].Value);
                                 detailsCommand.Parameters.AddWithValue("@productRate", row.Cells["Rate"].Value);
                                 detailsCommand.Parameters.AddWithValue("@productDiscount", row.Cells["Discount"].Value);
-                                detailsCommand.Parameters.AddWithValue("@productTotal", row.Cells["Total"].Value);
+                                detailsCommand.Parameters.AddWithValue("@productTotal", Convert.ToInt32(row.Cells["Total"].Value)- Convert.ToInt32(row.Cells["Discount"].Value));
                                 detailsCommand.ExecuteNonQuery();
                             }
                         }
@@ -165,7 +165,7 @@ namespace Management_System
                         DataSet dataSet = GetInvoiceData(connectionString, invoiceId);
                         reportDocument.SetDataSource(dataSet);
 
-                        string printerName = "Microsoft Print to PDF";
+                        string printerName = "CITIZEN CBM1000 Type II";
                         PrintDocument printDoc = new PrintDocument
                         {
                             PrinterSettings = { PrinterName = printerName }
@@ -433,7 +433,7 @@ namespace Management_System
                             DataSet dataSet = GetInvoiceData(connectionString, invoiceId);
                             reportDocument.SetDataSource(dataSet);
 
-                            string printerName = "Microsoft Print to PDF";
+                            string printerName = "CITIZEN CBM1000 Type II";
                             PrintDocument printDoc = new PrintDocument
                             {
                                 PrinterSettings = { PrinterName = printerName }
@@ -472,7 +472,9 @@ namespace Management_System
             txtReceiptAdjustment.Text = "0.0";
             txtNetInvoiceTotal.Text = "0.0";
             txtCashReceived.Text = "0.0";
-            txtReturnChange.Text = "0.0";
+            txtReturnChange.Text = "0";
+            txtCustomerName.Text = String.Empty;
+            txtCustomerName.Focus();
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)
@@ -584,14 +586,55 @@ namespace Management_System
         }
         private void txtCustomerDiscount_TextChanged(object sender, EventArgs e)
         {
-            txtNetGrossTotal.Text = (Convert.ToInt32(txtGrossTotal.Text) - Convert.ToInt32(txtCustomerDiscount.Text)).ToString();
-            txtNetInvoiceTotal.Text= txtNetGrossTotal.Text;
+            int grossTotal = 0;
+            int customerDiscount = 0;
+
+            if (!int.TryParse(txtGrossTotal.Text, out grossTotal))
+            {
+                grossTotal = 0;
+            }
+
+            if (!int.TryParse(txtCustomerDiscount.Text, out customerDiscount))
+            {
+                customerDiscount = 0;
+            }
+
+            int netGrossTotal = grossTotal - customerDiscount;
+
+            txtNetGrossTotal.Text = netGrossTotal.ToString();
+            txtNetInvoiceTotal.Text = txtNetGrossTotal.Text;
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
             SalesInvoices invoices= new SalesInvoices();
             invoices.ShowDialog();
+        }
+
+        private void txtCustomerName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtReceiptAdjustment_TextChanged(object sender, EventArgs e)
+        {
+            int grossTotal = 0;
+            int receiptAdjustment = 0;
+
+            if (!int.TryParse(txtNetGrossTotal.Text, out grossTotal))
+            {
+                grossTotal = 0;
+            }
+
+            if (!int.TryParse(txtReceiptAdjustment.Text, out receiptAdjustment))
+            {
+                receiptAdjustment = 0;
+            }
+
+            int netGrossTotal = grossTotal - receiptAdjustment;
+
+            txtNetGrossTotal.Text = netGrossTotal.ToString();
+            txtNetInvoiceTotal.Text = netGrossTotal.ToString();
         }
     }
 }

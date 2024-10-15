@@ -497,6 +497,7 @@
             this.txtReceiptAdjustment.Size = new System.Drawing.Size(144, 23);
             this.txtReceiptAdjustment.TabIndex = 27;
             this.txtReceiptAdjustment.Text = "0.0";
+            this.txtReceiptAdjustment.TextChanged += new System.EventHandler(this.txtReceiptAdjustment_TextChanged);
             // 
             // txtNetGrossTotal
             // 
@@ -863,7 +864,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1075, 213);
+            this.dataGridView1.Size = new System.Drawing.Size(1010, 213);
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -997,6 +998,7 @@
             this.txtCustomerName.Size = new System.Drawing.Size(215, 26);
             this.txtCustomerName.TabIndex = 7;
             this.txtCustomerName.Text = "Walk In";
+            this.txtCustomerName.TextChanged += new System.EventHandler(this.txtCustomerName_TextChanged);
             // 
             // label5
             // 
