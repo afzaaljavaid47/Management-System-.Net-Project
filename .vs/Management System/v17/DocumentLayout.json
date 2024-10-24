@@ -3,12 +3,19 @@
   "WorkspaceRootPath": "F:\\.NET\\Management-System-.Net-Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|f:\\.net\\management-system-.net-project\\management system\\crystalreport3.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}",
-      "RelativeMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|solutionrelative:management system\\crystalreport3.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}"
+      "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|F:\\.NET\\Management-System-.Net-Project\\management system\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|solutionrelative:management system\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|F:\\.NET\\Management-System-.Net-Project\\management system\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|solutionrelative:management system\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Management System||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|f:\\.net\\management-system-.net-project\\management system\\crystalreport3.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}",
+      "RelativeMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|solutionrelative:management system\\crystalreport3.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|F:\\.NET\\Management-System-.Net-Project\\management system\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -55,10 +62,6 @@
       "RelativeMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|solutionrelative:management system\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|F:\\.NET\\Management-System-.Net-Project\\management system\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|solutionrelative:management system\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|F:\\.NET\\Management-System-.Net-Project\\management system\\habibmedicalstoredataset.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|solutionrelative:management system\\habibmedicalstoredataset.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -69,9 +72,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|F:\\.NET\\Management-System-.Net-Project\\management system\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|solutionrelative:management system\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Management System||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|F:\\.NET\\Management-System-.Net-Project\\management system\\invoices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -88,6 +88,9 @@
     {
       "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|F:\\.NET\\Management-System-.Net-Project\\management system\\report1.rdlc||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|solutionrelative:management system\\report1.rdlc||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0183557F-68A5-4F11-B3C8-5495F5BE03D8}|Management System\\Management System.csproj|f:\\.net\\management-system-.net-project\\management system\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|a54ad834-9219-4aa6-b589-607af21c3e26"
     }
   ],
   "DocumentGroupContainers": [
@@ -97,11 +100,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 232,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "CrystalReport3.rpt",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReport3.rpt",
               "RelativeDocumentMoniker": "Management System\\CrystalReport3.rpt",
@@ -113,32 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CrystalReport1.cs",
-              "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReport1.cs",
-              "RelativeDocumentMoniker": "Management System\\CrystalReport1.cs",
-              "ToolTip": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReport1.cs",
-              "RelativeToolTip": "Management System\\CrystalReport1.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAwwBIAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T10:42:35.125Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "CrystalReportPrinter.cs",
-              "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReportPrinter.cs",
-              "RelativeDocumentMoniker": "Management System\\CrystalReportPrinter.cs",
-              "ToolTip": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReportPrinter.cs",
-              "RelativeToolTip": "Management System\\CrystalReportPrinter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T11:17:59.697Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Dashboard.cs [Design]",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Dashboard.cs",
               "RelativeDocumentMoniker": "Management System\\Dashboard.cs",
@@ -156,14 +134,63 @@
               "RelativeDocumentMoniker": "Management System\\Dashboard.cs",
               "ToolTip": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Dashboard.cs",
               "RelativeToolTip": "Management System\\Dashboard.cs",
-              "ViewState": "AgIAAF8BAAAAAAAAAAAhwGoBAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAOABAAAAAAAAAAAhwOsBAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-13T09:27:36.569Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "App.config",
+              "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\App.config",
+              "RelativeDocumentMoniker": "Management System\\App.config",
+              "ToolTip": "F:\\.NET\\Management-System-.Net-Project\\Management System\\App.config",
+              "RelativeToolTip": "Management System\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-10-08T14:26:28.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Management System",
+              "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Management System.csproj",
+              "RelativeDocumentMoniker": "Management System\\Management System.csproj",
+              "ToolTip": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Management System.csproj",
+              "RelativeToolTip": "Management System\\Management System.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-10-08T18:27:34.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CrystalReportPrinter.cs",
+              "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReportPrinter.cs",
+              "RelativeDocumentMoniker": "Management System\\CrystalReportPrinter.cs",
+              "ToolTip": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReportPrinter.cs",
+              "RelativeToolTip": "Management System\\CrystalReportPrinter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T11:17:59.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CrystalReport1.cs",
+              "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReport1.cs",
+              "RelativeDocumentMoniker": "Management System\\CrystalReport1.cs",
+              "ToolTip": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReport1.cs",
+              "RelativeToolTip": "Management System\\CrystalReport1.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAwwBIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-15T10:42:35.125Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CrystalReport11.cs",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\CrystalReport11.cs",
               "RelativeDocumentMoniker": "Management System\\CrystalReport11.cs",
@@ -171,12 +198,11 @@
               "RelativeToolTip": "Management System\\CrystalReport11.cs",
               "ViewState": "AgIAAF8AAAAAAAAAAAAhwBQAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T10:43:02.507Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-15T10:43:02.507Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Product.cs",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Product.cs",
               "RelativeDocumentMoniker": "Management System\\Product.cs",
@@ -188,7 +214,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "InvoiceDataSet.xsd",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\InvoiceDataSet.xsd",
               "RelativeDocumentMoniker": "Management System\\InvoiceDataSet.xsd",
@@ -199,7 +225,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "SalesInvoices.cs [Design]",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\SalesInvoices.cs",
               "RelativeDocumentMoniker": "Management System\\SalesInvoices.cs",
@@ -210,7 +236,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Invoices.cs [Design]",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Invoices.cs",
               "RelativeDocumentMoniker": "Management System\\Invoices.cs",
@@ -221,20 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "App.config",
-              "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\App.config",
-              "RelativeDocumentMoniker": "Management System\\App.config",
-              "ToolTip": "F:\\.NET\\Management-System-.Net-Project\\Management System\\App.config",
-              "RelativeToolTip": "Management System\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-10-08T14:26:28.046Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Home.cs [Design]",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Home.cs",
               "RelativeDocumentMoniker": "Management System\\Home.cs",
@@ -245,7 +258,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "Home.cs",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Home.cs",
               "RelativeDocumentMoniker": "Management System\\Home.cs",
@@ -257,7 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Product.cs [Design]",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Product.cs",
               "RelativeDocumentMoniker": "Management System\\Product.cs",
@@ -268,7 +281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Print.cs [Design]",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Print.cs",
               "RelativeDocumentMoniker": "Management System\\Print.cs",
@@ -279,7 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Login.cs [Design]",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Login.cs",
               "RelativeDocumentMoniker": "Management System\\Login.cs",
@@ -290,7 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "HabibMedicalStoreDataSet.Designer.cs",
               "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\HabibMedicalStoreDataSet.Designer.cs",
               "RelativeDocumentMoniker": "Management System\\HabibMedicalStoreDataSet.Designer.cs",
@@ -298,19 +311,7 @@
               "RelativeToolTip": "Management System\\HabibMedicalStoreDataSet.Designer.cs",
               "ViewState": "AgIAAFYAAAAAAAAAAAAAAGAAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T10:16:31.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Management System",
-              "DocumentMoniker": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Management System.csproj",
-              "RelativeDocumentMoniker": "Management System\\Management System.csproj",
-              "ToolTip": "F:\\.NET\\Management-System-.Net-Project\\Management System\\Management System.csproj",
-              "RelativeToolTip": "Management System\\Management System.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-10-08T18:27:34.706Z"
+              "WhenOpened": "2024-10-13T10:16:31.226Z"
             },
             {
               "$type": "Document",
