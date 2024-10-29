@@ -265,7 +265,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>A9KfBohFQlslM0RL7F5yT4KX4yylyQNbUnUB2O3/rkQ=</dsig:DigestValue>
+        <dsig:DigestValue>+Ixjw+FWM5UUTvATuwmXnZCam8pPCON9ISHXpmYk348=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -881,13 +881,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Management System.exe.config" size="1076">
+  <file name="Management System.exe.config" size="1080">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>mXKCkZQLSbA9999rsIB/Fv9kEDgx+m7RU8jaF14Smok=</dsig:DigestValue>
+      <dsig:DigestValue>hq+40WzOwIvtIDNSQpGKnsWQAPuFB2S+wUWj/TWfW88=</dsig:DigestValue>
     </hash>
   </file>
   <file name="SqlServerTypes\readme.htm" size="2369">
