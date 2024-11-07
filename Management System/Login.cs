@@ -50,7 +50,7 @@ namespace Management_System
                     {
                         MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Hide();
-                        Home home = new Home();
+                        Dashboard home = new Dashboard();
                         home.ShowDialog();
                     }
                     else
